@@ -19,7 +19,7 @@ public:
 	std::pair<int, int> getCoordinates();
 	std::pair<int, int> escapeChaser();
 	std::pair<int, int> chaseTarget();
-	void killTarget();
+	void killTarget();//delete target and fix dengling target/chaser relations
 };
 
 #endif // !ASSASSIN_H
