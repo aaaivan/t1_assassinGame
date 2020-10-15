@@ -52,9 +52,9 @@ std::pair<int, int> Assassin::escapeChaser(){
 	std::pair<int, int> newCoord = std::make_pair(xMove + coordinates.first, yMove + coordinates.second);//coordinates after the move
 	
 	//check new position is within the board bounds
-	if (newCoord.first >= Board::getSize() || newCoord.first < 0)
+	if (newCoord.first >= Board::getHeight() || newCoord.first < 0)
 		return coordinates;
-	if (newCoord.second >= Board::getSize() || newCoord.second < 0)
+	if (newCoord.second >= Board::getWidth() || newCoord.second < 0)
 		return coordinates;
 
 	//check whether the target is in the new coordinates

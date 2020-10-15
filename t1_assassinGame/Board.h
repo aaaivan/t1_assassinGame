@@ -7,18 +7,20 @@
 class Board
 {
 private:
-	static int size;
+	static int height;
+	static int width;
 	static Assassin* movingAssassin;
 	static std::vector<bool> movementPattern; // true=escape false=chase
 	static unsigned int movementPatternCurrentIndex;
 	static Assassin*** board;
 public:
-	Board(int _size, int _numOfAssassins, std::vector<std::pair<int, int>> _coordinates, int _escapeSteps, int _chaseSteps);
+	Board(int _height, int _width, int _numOfAssassins, std::vector<std::pair<int, int>> _coordinates, int _escapeSteps, int _chaseSteps);
 	~Board();
 	static void printBoard();
 	static void updateBoard();
 	static bool isGameEnded();
 	static Assassin* getAssassinAtCell(int x1, int x2);
-	static int getSize();
+	static int getHeight();
+	static int getWidth();
 };
 #endif // !BOARD_H

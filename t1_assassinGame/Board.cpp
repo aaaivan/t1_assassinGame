@@ -2,7 +2,8 @@
 #include <iostream>
 
 //initialize static variables
-int Board::size = 0;
+int Board::height = 0;
+int Board::width = 0;
 Assassin* Board::movingAssassin=nullptr;
 std::vector<bool> Board::movementPattern={}; // true=escape false=chase
 unsigned int Board::movementPatternCurrentIndex=0;
@@ -10,8 +11,9 @@ Assassin*** Board::board=nullptr;
 
 
 //constructor
-Board::Board(int _size, int _numOfAssassins, std::vector<std::pair<int,int>> coordinates, int _escapeSteps, int _chaseSteps) {
-	size = _size;
+Board::Board(int _height, int _width, int _numOfAssassins, std::vector<std::pair<int,int>> coordinates, int _escapeSteps, int _chaseSteps) {
+	height = _height;
+	width = _width;
 	
 	//allocate memory for each assassin and define for each its target/chaser
 	Assassin* first = new Assassin(0, coordinates[0],nullptr, nullptr);
@@ -34,10 +36,10 @@ Board::Board(int _size, int _numOfAssassins, std::vector<std::pair<int,int>> coo
 		movementPattern.push_back(false);
 
 	//create an 2d array of Assassin* representng the layout of the game
-	board = new Assassin** [size];
-	for (int i = 0; i < size; i++) {
-		board[i] = new Assassin*[size];
-		for (int j = 0; j < size; j++) {
+	board = new Assassin** [height];
+	for (int i = 0; i < height; i++) {
+		board[i] = new Assassin*[width];
+		for (int j = 0; j < width; j++) {
 			board[i][j] = nullptr;
 		}
 	}
@@ -50,8 +52,8 @@ Board::Board(int _size, int _numOfAssassins, std::vector<std::pair<int,int>> coo
 
 //print the board
 void Board::printBoard() {
-	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < size; j++) {
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
 			if (board[i][j] == nullptr)
 				std::cout << ".";
 			else
@@ -107,7 +109,7 @@ bool Board::isGameEnded() {
 //destructor
 Board::~Board() {
 	//delete memory allocated for 2d Assassin* array 'board'
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < height; i++) {
 		delete[] board[i];
 	}
 	delete[] board;
@@ -118,6 +120,10 @@ Assassin* Board::getAssassinAtCell(int x1, int x2) {
 	return board[x1][x2];
 }
 
-int Board::getSize() {
-	return size;
+//getters
+int Board::getHeight() {
+	return height;
+}
+int Board::getWidth() {
+	return width;
 }

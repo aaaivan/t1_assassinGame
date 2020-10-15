@@ -1,11 +1,9 @@
 #include "UserInput.h"
 #include <sstream>
-#include <vector>
-#include <string>
 #include <iostream>
 //get board size from player
-int askBoardSize() {
-	std::cout << "Board size: ";
+int askBoardSize(std::string s) {
+	std::cout << "Board " << s << ": ";
 	int input=0;
 	std::cin >> input;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // ignore unlimited characters until a \n is removed
@@ -36,7 +34,9 @@ std::pair<int, int> askMovementPattern() {
 //get initial coordinates of the assassins
 std::vector<std::pair<int, int>> askInitialPositions(int numOfAssassins) {
 	std::cout << "Enter " << numOfAssassins << " distinct and valid pairs of space-separated numbers" <<
-		" representing the position of each assassin on the board.\nOne pair per line." << std::endl;
+		" representing the position of each assassin on the board.\n"<<
+		"In each pair, the first number is the vertical coordinate and the second is the horizontal coordinate.\n"
+		<<"One pair per line." << std::endl;
 	std::vector<std::pair<int, int>> v;
 	for (int i = 0; i < numOfAssassins; i++) {
 		std::string input;

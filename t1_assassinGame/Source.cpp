@@ -6,12 +6,13 @@
 #include <iostream>
 
 int main() {
-	int size = askBoardSize();
+	int height = askBoardSize("height");
+	int width = askBoardSize("width");
 	int numOfAssassins = askNumOfAssassins();
 	std::pair<int, int> movementPattern = askMovementPattern();
 	std::vector<std::pair<int, int>> coordinates = askInitialPositions(numOfAssassins);
 
-	Board* b = new Board(size, numOfAssassins, coordinates, movementPattern.first, movementPattern.second);
+	Board* b = new Board(height, width, numOfAssassins, coordinates, movementPattern.first, movementPattern.second);
 	b->printBoard();
 	while (!b->isGameEnded()) {
 		b->updateBoard();
